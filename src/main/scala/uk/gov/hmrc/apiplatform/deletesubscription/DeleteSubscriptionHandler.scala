@@ -26,7 +26,7 @@ class DeleteSubscriptionHandler(override val apiGatewayClient: ApiGatewayClient,
 
     val identifiers: Option[(String, String)] = for {
       usagePlanId <- getAwsUsagePlanIdByApplicationName (deleteSubscriptionRequest.applicationName)
-      restApiId <- getAwsRestApiIdByApiName(deleteSubscriptionRequest.apiName)
+      restApiId <- getAwsRestApiIdByApiName(deleteSubscriptionRequest.apiName, logger)
     } yield (usagePlanId, restApiId)
 
     identifiers match {
